@@ -22,10 +22,9 @@ ENV DATASOURCE_URL jdbc:h2:file:$RDECK_BASE/server/data/grailsdb
 # note, make sure this is set to "true" if you are using Oracle or Mysql
 ENV RDBSUPPORT false
 
-RUN echo 'grails.serverURL=$SERVER_URL\n\
-dataSource.dbCreate=update\n\
-dataSource.url=$DATASOURCE_URL\n\
-rundeck.v14.rdbsupport=$RDBSUPPORT\n'\
->> $RDECK_BASE/rundeck-config.properties 
+RUN echo -n "grails.serverURL=$SERVER_URL" >> $RDECK_BASE/rundeck-config.properties 
+RUN echo -n "dataSource.dbCreate=update" >> $RDECK_BASE/rundeck-config.properties 
+RUN echo -n "dataSource.url=$DATASOURCE_URL" >> $RDECK_BASE/rundeck-config.properties 
+RUN echo -n "rundeck.v14.rdbsupport=$RDBSUPPORT" >> $RDECK_BASE/rundeck-config.properties 
 
 ENV CATALINA_OPTS "-Xmx1024m -Xms256m -Drdeck.base=$RDECK_BASE -Drundeck.config.location=$RDECK_BASE/rundeck-config.properties"
