@@ -38,4 +38,4 @@ ENV _CATALINA_OPTS "${_CATALINA_OPTS} -Drundeck.config.location=$RDECK_CONFIG_PR
 
 ENV CATALINA_OPTS ${CATALINA_OPTS:-${_CATALINA_OPTS}}
 
-CMD ["run.sh"]
+CMD ["run.sh", "catalina.sh", "run"]
