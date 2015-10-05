@@ -15,6 +15,8 @@ RUN set -x \
 	&& unzip rundeck.war \
 	&& rm rundeck.war*
 
+ADD ./run.sh /
+
 # RunDeck app configuration - Defaults from rundeck/wiki/Tomcat-Deployment
 ENV _CATALINA_OPTS ${JAVA_OPTIONS:--Xmx1024m -Xms256m}
 
@@ -36,4 +38,4 @@ ENV _CATALINA_OPTS "${_CATALINA_OPTS} -Drundeck.config.location=$RDECK_CONFIG_PR
 
 ENV CATALINA_OPTS ${CATALINA_OPTS:-${_CATALINA_OPTS}}
 
-# Defaults to using CMD ["catalina.sh", "run"] from tomcat container.
+CMD ["run.sh"]
