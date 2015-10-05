@@ -5,8 +5,9 @@ FROM tomcat:7-jre7
 ENV RUNDECK_VERSION 2.5.3
 ENV RUNDECK_DOWNLOAD_URL http://download.rundeck.org
 ENV RUNDECK_WAR_URL $RUNDECK_DOWNLOAD_URL/war/rundeck-$RUNDECK_VERSION.war
+ENV APP_CONTEXT rundeck
 
-WORKDIR $CATALINA_HOME/webapps/rundeck
+WORKDIR $CATALINA_HOME/webapps/$APP_CONTEXT
 
 RUN set -x \
 	&& curl -fSL "$RUNDECK_WAR_URL" -o rundeck.war \
@@ -21,7 +22,7 @@ ENV RDECK_BASE ${RDECK_BASE:-/rundeck}
 ENV _CATALINA_OPTS "${_CATALINA_OPTS} -Drdeck.base=$RDECK_BASE"
 WORKDIR $RDECK_BASE
 
-ENV SERVER_URL ${SERVER_URL:-http://$HOSTNAME:8080/}
+ENV SERVER_URL ${SERVER_URL:-http://$HOSTNAME:8080/$APP_CONTEXT/}
 ENV DATASOURCE_URL ${DATASOURCE_URL:-jdbc:h2:file:$RDECK_BASE/server/data/grailsdb}
 # note, make sure this is set to "true" if you are using Oracle or Mysql
 ENV RDBSUPPORT ${RDBSUPPORT:-false}
