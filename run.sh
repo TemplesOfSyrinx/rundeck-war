@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-catalina.sh run
+exec $1
