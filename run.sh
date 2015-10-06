@@ -25,4 +25,4 @@ export _CATALINA_OPTS="${_CATALINA_OPTS} -Drundeck.config.location=$RDECK_CONFIG
 
 export CATALINA_OPTS=${CATALINA_OPTS:-${_CATALINA_OPTS}}
 
-exec $1
+exec $@
