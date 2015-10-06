@@ -16,5 +16,6 @@ RUN set -x \
 	&& rm rundeck.war*
 
 ADD ./run.sh /
+RUN chmod +x /run.sh
 
-CMD ["run.sh", "catalina.sh", "run"]
+CMD ["/run.sh", "catalina.sh", "run"]
