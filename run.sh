@@ -4,6 +4,7 @@ export _CATALINA_OPTS=${JAVA_OPTIONS:--Xmx1024m -Xms256m}
 
 export RDECK_BASE=${RDECK_BASE:-/rundeck}
 export _CATALINA_OPTS="${_CATALINA_OPTS} -Drdeck.base=$RDECK_BASE"
+mkdir -p $RDECK_BASE
 cd $RDECK_BASE
 
 export SERVER_URL=${SERVER_URL:-http://$HOSTNAME:8080/$APP_CONTEXT/}
