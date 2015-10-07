@@ -15,6 +15,11 @@ RUN set -x \
 	&& unzip rundeck.war \
 	&& rm rundeck.war*
 
+# https://github.com/rundeck/rundeck/issues/1187
+# the normal jetty/launcher installer creates a "log4j.properties" file for you.
+# You would need to create one within the classpath for the webapp, e.g. at $CATALINA_HOME/webapps/rundeck/WEB-INF/classes/log4j.properties
+RUN touch WEB-INF/classes/log4j.properties
+
 ADD ./run.sh /
 RUN chmod +x /run.sh
 
